@@ -1,0 +1,442 @@
+I completed basic and advance level of SQL 
+
+# SQL is a language to talk different databases. 
+# SQL is a Case in-sensitive 
+# Comments in SQL 
+   1. -- write what ever we want 
+   2. # write what ever we want 
+
+1.Create Database 
+(create database db_cn;)
+2. Activate Database
+(use db_cn)
+
+# Table is a structure where data is stored
+1. Create Table 
+ # create table Tb2_Emp
+   (EMP_ID int , EMP_Name char(20) , DOJ date , Salary float )
+ # select * from Tb2_Emp
+
+2 . After create empty table structure we need to insert values 
+ #insert into Tb2_Emp
+  values(1 , 'Arjun' , '2022-02-03' , 19500),
+  (2,'Sriram' , '2025-03-03' , 78000)
+-------------------------------------------------------------------------------------------------------------------------
+# Differences Between Primary Key, Unique Key, and Foreign Key in SQL
+
+1. Primary Key 
+-----------------
+# A Primary key is a column that will have only unique values and No null or Missing values.
+# One table can have only one primary key .
+
+Example:
+---------
+   # CREATE TABLE Employees (EmployeeID INT PRIMARY KEY, Name VARCHAR(100));
+# Key Characteristics:
+  1. One primary key per table.
+  2. Implicitly creates a unique index.
+
+2. Unique Key 
+----------------
+# A Unique key is a column that will accept only unique data 
+# It can accepts mutliple nulls 
+# One table can have multiple unique columns 
+
+Example:
+----------
+  # CREATE TABLE Employees (EmployeeID INT, Email VARCHAR(100) UNIQUE);
+# Key Characteristics:
+  1. Multiple unique keys can exist per table.
+  2. Can include NULL values (only one NULL per column).
+
+3. Foreign Key 
+----------------
+# A foreign key is a column or a set of columns that establishes a relationship between the data in two tables. 
+# It references the primary key or a unique key in another table.
+
+Example:
+---------
+   # CREATE TABLE Orders (OrderID INT PRIMARY KEY, EmployeeID INT, FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID));
+# Key Characteristics:
+ 1. Can be NULL or must match a value in the referenced table.
+2. Allows multiple foreign keys per table.
+
+
+Difference between Char and VarChar 
+-----------------------------------
+# Char is a text and VarChar is a variable character 
+# One character is in one byte memory 
+# Performance wise char is faster
+# VarChar is helps to save the memory 
+
+Example:
+--------
+# Char is used like limited values like Country names ,Pin codes , mobile number , aadhar number ,why bez it knows the byte , 
+how much memory it requires . 
+like Char(5) ----> India   
+like Char(20) ---> India , 15 bytes of memory loss 
+# VarChar is used any values its takes how much bytes we want alone ,
+like VarChar(20) ---> India , it takes only 5 bytes  than remaining saved , it helps the save the memory .
+
+
+# Alter Table --- > It means add a new column in the table 
+Example :
+----------
+ # alter table tb_actors ----> tb_actors is a table name already created 
+   add country varchar(20)
+ #select * from tb_actors 
+
+# Drop Column ---> It will delete the country column in the tb_actors 
+Example: 
+---------
+# alter table tb_actors
+  drop column country 
+# select * from tb_actors 
+
+# Modify the Data type --- > It will help to change the datatype from previous table.
+Example :
+----------
+ # alter table tb_actors
+ modify column actor_name 
+ varchar(50)  --- > previously the data type is varchar(30) now it change to varchar(50).
+
+# Rename a Column / Rename Table ---> it will helps to rename column name and table name as well 
+1. Example :
+-----------
+# alter table tb_actors
+  rename column actor_name to Film_Actors_Name ( previous actor_name now it change to Film_Actors_Name) 
+# select * from tb_actors 
+2. Example :
+------------
+# alter table tb_actors rename tb_actors_data ( previous tb_actors now it change to tb_actors_data ) 
+# select * from tb_actors_data
+-----------------------------------------------------------------------------------------------------------------------------
+Types of Commandas in SQL 
+--------------------------
+# SQL commands are generally categorized into five main types:
+
+ 1. Data Definition Language (DDL)
+ 2. Data Manipulation Language (DML)
+ 3. Data Control Language (DCL)
+ 4. Transaction Control Language (TCL)
+ 5. Data Query Language (DQL)
+
+
+ 1. Data Definition Language (DDL)
+-------------------------------------
+# Purpose: Defines the structure of the database schema.
+Key Commands:
+-------------
+1. CREATE: Creates a new table, view, or database.
+2. ALTER: Modifies an existing database object, like a table.
+3. DROP: Deletes tables, views, or databases.
+4. TRUNCATE: Removes all records from a table, but not the table itself.
+
+2. Data Manipulation Language (DML)
+--------------------------------------
+#Purpose: Manipulates data within the database.
+Key Commands:
+---------------
+1. INSERT: Adds new records into a table.
+2. UPDATE: Modifies existing data in a table.
+3. DELETE: Removes records from a table.
+
+3. Data Control Language (DCL)
+---------------------------------
+# Purpose: Controls access to the data in the database.
+Key Commands:
+--------------
+1. GRANT: Gives users access privileges.
+2. REVOKE: Removes access privileges from users.
+
+4. Transaction Control Language (TCL)
+---------------------------------------
+# Purpose: Manages transactions within the database.
+Key Commands:
+---------------
+1. COMMIT: Saves the changes made in a transaction permanently.
+2. ROLLBACK: Undoes the changes made in a transaction.
+3. SAVEPOINT: Sets a point within a transaction to which you can later roll back.
+4. SET TRANSACTION: Specifies characteristics for the transaction, such as isolation level.
+
+
+ 5. Data Query Language (DQL)
+------------------------------
+#Purpose: Used to query the data.
+Key Command:
+---------------
+1. SELECT: 
+-------------
+# Retrieves data from one or more tables (this command is often considered part of DML but is sometimes categorized separately).
+# select command is used to fetch the data from the table .
+# select * from table_name ( * means all the columns)
+
+1. DDL: Defines structure (CREATE, ALTER, DROP, TRUNCATE).
+2. DML: Manipulates data (SELECT, INSERT, UPDATE, DELETE).
+3. DCL: Controls access (GRANT, REVOKE).
+4. TCL: Manages transactions (COMMIT, ROLLBACK, SAVEPOINT, SET TRANSACTION).
+5. DQL: Queries data (SELECT).
+
+# To find the number of Rows in the data 
+SELECT COUNT(*) AS TotalRows
+FROM `bank data`;
+
+# First Create database -----> Activate Database ------> Load or import file 
+
+
+# select clauses:
+------------------
+1. order by Clause ---> It sorting in ascending order. 
+ # select * from `bank data`
+   order by balance ; ---> from low to high 
+
+ # select * from `bank data`
+ # order by balance desc; ---> from high to low 
+
+ # select * from `bank data`
+ # order by region , balance desc ;
+
+ # Ascending order  :  Smallest to largest (0 to 9 or A to Z)
+ # Descending order : Largest to smallest (9 to 0 or z to A)
+
+ Limit : 
+----------
+--> Limit is used to see only few rows of data .
+  # select * from `bank data`
+  # limit 5 --- > It give 5 rows of data . 
+2. Distinct Clause ---> It is used to fetch the unique values .
+ # select distinct region from `bank data` ( Unique values like region ( East , west , north and south)
+ # select distinct gender from `bank data` ( Find Male , Female ,Removed duplicates)
+
+3. Where Clause ---> It is used to filter the data 
+ # select gender from `bank data`
+   where gender ='Male'  ----> To find only Male persons 
+
+Comparision Operators in SQL 
+---------------------------
+1. Greater than (>)
+2. Less than (<)
+3. Greater than or equal to (>=)
+4. Less than or equal to (<=)
+5. Equal to (=)
+6. Like operator (<>)
+7. in operator 
+
+ 
+Logical Operators 
+------------------
+1. AND 
+2. OR 
+3. NOT 
+
+# Correct sequence to write a SQL queries 
+  Select 
+  From
+  where
+  order by 
+  Limit
+ 
+# In like operator it have two types of wildcards 
+ 1. %   --- > It means any number of characters 
+ 2. _ ( Under score )
+
+1. like use % 
+Example :
+----------
+# select * from `bank data`
+# where name like 'A%';  ---> Find the names whose starts with A like Arjun
+
+# select * from `bank data` ---> Find the names whose ends with A like sulochana
+# where name like '%A'
+
+# select * from `bank data` ---> Find the names whose starts and ends with A like AnnA 
+# where name like 'A%A'
+
+2.Like use  _ ( Under score ) ---> One underscore means one character 
+Examples :
+-----------
+# select * from `bank data`
+# where name like 'A_A' ---> like AVA one charcter between . 
+
+# select * from `bank data`
+# where name like 'A__A' ---> Like AnnA two characters between 
+
+--> Atleast 5 Characters in a name  using underscore (_) in like operator
+# select * from `bank data`
+# where name like '_____'
+# limit 5;
+
+       Or 
+
+# select * from `bank data`
+# where name like '_____%';
+        
+       or 
+
+# select * from `bank data`
+# where name like '%_____%'
+
+7. in operator --- > it will help the conditions where using OR operators more 
+Examples :
+-----------
+Question  is I want to fetch the data of the customers from england , scotland and wales in region column
+# select * from `bank data`
+# where region ='England' or region='scotland' or region = 'wales'
+
+                 or
+# select * from `bank data`
+# where region in ('England' , 'Wales' , 'Scotland')
+
+Alias : 
+--------
+# alias is like a dummy name , it is useful in output purpose 
+# as is a optional 
+Example:
+----------
+# select name as First_Name, surname as Last_Name from `bankdata`;
+
+# SELECT * FROM db1_employees.`bank data`;
+# select Name as First_Name , Surname as Last_Name from db1_employees.`bank data`
+
+
+
+2. DML Commands 
+----------------
+1. Delete ---> # it means complete data will deleted only , headings and structure of the table is there. 
+               # detele command delete row by row 
+Examples :
+------------
+# select * from `bank data`
+# delete from `bank data`
+# where `customer id` = 1 ----> deleted one column 
+
+
+--> Roll back  it means data back like undo 
+--> start transaction  it means if suppose delete any thing it can't back again , but i need that data , so we use start trasaction 
+Examples :
+------------
+# start transaction ;
+# delete from `bank data`
+#SELECT * from `bank data`
+# rollback 
+
+--> Commit    it means change permanetly --> permanently gone 
+
+--> Truncate command ---> it will delete complete data from the table 
+
+# Typically delete and Truncate both are simillar but performance wise truncate is faster than delete , 
+  it deletes millions of rows within in limited time period.
+
+# Their is no where clause concept in truncate but delete they have in where clause concepts 
+ Example : 
+------------
+# select * from `bank data`
+# delete from `bank data`
+# where `customer id` = 1 ----> deleted one column 
+
+-- > Update command  --- > it is mainly used in existing data 
+Examples : 
+-----------
+# select * from `bank data`
+# update `bank data`
+# set region ='scotland'  ---> The name of the region Northerland to scotland 
+# where `customer id` = '400000002'
+# select * from `bank data`
+
+# I want add a permanent column of interest 
+Example: 
+--------
+# alter table `bank data`
+# add interest float      ----> Interest column added in the end 
+# select * from `bank data`
+
+# update `bank data`  --- > Interest calculations added 
+# set interest  = 0.1*balance 
+# select * from `bank data`
+
+IF Conditions 
+--------------
+# The question is i want gold and silver customers as a separate column as Customer_segment 
+# more than 100000 balance is gold and less than or equal to 100000 is silver 
+
+select * from `bank data`
+select *,
+		case
+        when balance>100000 then 'Gold'
+        else 'silver'
+        end as Customer_Segment 
+	
+from `bank data` 
+WHERE balance > 100000
+limit 5
+
+                  or 
+
+SELECT *
+FROM (
+    SELECT *,
+        CASE
+            WHEN balance > 100000 THEN 'Gold'
+            ELSE 'Silver'
+        END AS Customer_Segment
+    FROM `bank data`
+) AS subquery
+WHERE Customer_Segment = 'Gold'
+LIMIT 5;
+
+-----------------------------------------------------------------------------------------------------------------------------
+# Group by and Set operator 
+-----------------------------
+# Group by is something , which will help you create summaries level 
+
+--> Aggregate functions 
+--------------------------
+1. Sum , 2. Count , 3. Max , 4. Min , 5. Avg 
+
+# Where caluse and Having clause 
+---------------------------------
+# where : ---> where is something which , we use to filter out the data at the row level 
+# Having : --> Having something which , we use to filter out the data at the summarised level 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
